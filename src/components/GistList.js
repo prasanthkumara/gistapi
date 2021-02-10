@@ -68,8 +68,8 @@ const GistList = (props) => {
               </GistActions>
             </UserRow>
             <LastUpdated>
-              Created at: {row.created_at}
-              Last updated: {row.updated_at}
+              <Time>Created at: {formatDate(row.created_at)}</Time>
+              <Time>Last updated: {formatDate(row.updated_at)}</Time>
             </LastUpdated>
             <Description>{row.description}</Description>
             <FilesList>
@@ -93,11 +93,10 @@ const GistList = (props) => {
   );
 };
 
-// function formatDate(date) {
-//     let obj = new Date(date);
-//     console.log(`${obj.getDate}/${obj.getMonth}/${obj.getFullYear}`);
-//     return `${obj.getDate}/${obj.getMonth}/${obj.getFullYear}`;
-// }
+const formatDate = (date) => {
+    const obj = new Date(date);
+    return `${obj.getDate()}/${obj.getMonth()}/${obj.getFullYear()}`;
+}
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -143,6 +142,7 @@ const LastUpdated = styled.div`
 const Description = styled.div`
   font-size: 13px;
   color: #626465;
+  margin: 10px 0px;
 `;
 
 const FilesList = styled.div`
@@ -153,6 +153,10 @@ const FilesList = styled.div`
 
 const NoUser = styled.div`
   text-align: center;
+`;
+
+const Time = styled.span`
+  margin-right: 10px;
 `;
 
 export default GistList;
